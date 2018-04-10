@@ -3,6 +3,7 @@ var React = require('React');
 var Home = require('./components/homePage');
 var About = require('./components/about/aboutPage');
 var Header = require('./components/common/header');
+var Authors = require('./components/authors/authorsPage');
 
 (function (win) {
     "use strict";
@@ -16,6 +17,9 @@ var Header = require('./components/common/header');
                 case 'about':
                     Child = About;
                     break;
+                case 'authors':
+                    Child = Authors;
+                    break;
                 default:
                     Child = Home;
             }
@@ -28,7 +32,6 @@ var Header = require('./components/common/header');
             );
         }
     });
-
 
     function render() {
         var route = win.location.hash.substr(1);
