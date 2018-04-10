@@ -33610,35 +33610,40 @@ var Home = require('./components/homePage');
 var About = require('./components/about/aboutPage');
 var Header = require('./components/common/header');
 
-var App = React.createClass({displayName: "App",
+(function (win) {
+    "use strict";
 
-    render: function(){
-        var Child;
+    var App = React.createClass({displayName: "App",
 
-        switch (this.props.route){
-            case 'about':
-                Child = About;
-                break;
-            default:
-                Child = Home;
+        render: function(){
+            var Child;
+
+            switch (this.props.route){
+                case 'about':
+                    Child = About;
+                    break;
+                default:
+                    Child = Home;
+            }
+
+            return (
+                React.createElement("div", null, 
+                    React.createElement(Header, null), 
+                    React.createElement(Child, null)
+                )
+            );
         }
+    });
 
-        return (
-            React.createElement("div", null, 
-                React.createElement(Header, null), 
-                React.createElement(Child, null)
-            )
-        );
+
+    function render() {
+        var route = win.location.hash.substr(1);
+        React.render(React.createElement(App, {route: route}), document.getElementById('app'));
     }
-});
 
+    win.addEventListener('hashchange', render);
+    render();
 
-function render() {
-    var route = window.location.hash.substr(1);
-    React.render(React.createElement(App, {route: route}), document.getElementById('app'));
-}
-
-window.addEventListener('hashchange', render);
-render();
+})(window);
 
 },{"./components/about/aboutPage":352,"./components/common/header":353,"./components/homePage":354,"React":155,"jquery":156}]},{},[355]);
