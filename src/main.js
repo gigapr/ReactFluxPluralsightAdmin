@@ -3,7 +3,7 @@ var React = require('React');
 var Home = require('./components/homePage');
 var About = require('./components/about/aboutPage');
 var Header = require('./components/common/header');
-var Authors = require('./components/authors/authorsPage');
+var AuthorsPage = require('./components/authors/authorsPage');
 
 (function (win) {
     "use strict";
@@ -18,7 +18,7 @@ var Authors = require('./components/authors/authorsPage');
                     Child = About;
                     break;
                 case 'authors':
-                    Child = Authors;
+                    Child = AuthorsPage;
                     break;
                 default:
                     Child = Home;
